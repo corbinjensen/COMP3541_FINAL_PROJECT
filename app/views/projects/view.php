@@ -1,15 +1,35 @@
-<article>
+<section style="padding: 4rem 2rem; max-width: 800px; margin: 0 auto;">
+    
     <?php if (!empty($project->image)): ?>
-        <img src="<?php echo URLROOT . '/public/uploads/' . htmlspecialchars($project->image); ?>" 
-             alt="<?php echo htmlspecialchars($project->title); ?>" 
-             style="max-width: 500px; height: auto;"><br><br>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="<?= URLROOT . '/public/uploads/' . htmlspecialchars($project->image); ?>"
+                 alt="<?= htmlspecialchars($project->title); ?>"
+                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        </div>
     <?php endif; ?>
 
-    <h1><?php echo htmlspecialchars($project->title); ?></h1>
+    <h1 style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">
+        <?= htmlspecialchars($project->title); ?>
+    </h1>
+
     <?php if (!empty($project->category)): ?>
-        <p><strong>Category:</strong> <?php echo htmlspecialchars($project->category); ?></p>
+        <p style="text-align: center; font-size: 1rem; color: #555; margin-bottom: 0.5rem;">
+            <strong>Category:</strong> <?= htmlspecialchars($project->category); ?>
+        </p>
     <?php endif; ?>
-    <p><strong>Tech Stack:</strong> <?php echo htmlspecialchars($project->tech_stack); ?></p>
-    <p><?php echo nl2br(htmlspecialchars($project->description)); ?></p>
-    <p><a href="?url=projects/index">&larr; Back to Projects</a></p>
-</article>
+
+    <?php if (!empty($project->tech_stack)): ?>
+        <p style="text-align: center; font-size: 1rem; color: #555; margin-bottom: 2rem;">
+            <strong>Tech Stack:</strong> <?= htmlspecialchars($project->tech_stack); ?>
+        </p>
+    <?php endif; ?>
+
+    <article style="line-height: 1.7; font-size: 1.05rem; color: #1e2a3b; margin-bottom: 3rem;">
+        <?= nl2br(htmlspecialchars($project->description)); ?>
+    </article>
+
+    <div style="text-align: center;">
+        <a href="?url=projects/index" class="btn-secondary">&larr; Back to Projects</a>
+    </div>
+
+</section>

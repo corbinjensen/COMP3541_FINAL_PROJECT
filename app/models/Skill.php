@@ -4,8 +4,15 @@ require_once __DIR__ . '/../core/Database.php';
 class Skill {
     private $db;
 
+
     public function __construct() {
+        require_once __DIR__ . '/../core/Database.php';
         $this->db = new Database();
+    }
+
+    public function getAll() {
+        $this->db->query("SELECT * FROM skills ORDER BY name ASC");
+        return $this->db->resultSet();
     }
 
     public function getAllSkills() {

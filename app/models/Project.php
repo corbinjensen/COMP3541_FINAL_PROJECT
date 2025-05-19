@@ -15,6 +15,14 @@ class Project {
                           ORDER BY projects.created_at DESC");
         return $this->db->resultSet();
     }
+
+    public function getFeaturedProjects($limit = 3) {
+        $this->db->query("SELECT * FROM projects ORDER BY created_at DESC LIMIT :limit");
+        $this->db->bind(':limit', $limit, PDO::PARAM_INT);
+        return $this->db->resultSet();
+    }
+    
+    
     
     
     public function getProjectsByCategory($categoryId) {

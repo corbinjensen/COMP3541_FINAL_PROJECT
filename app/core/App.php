@@ -6,8 +6,11 @@ class App {
     protected $params = [];
 
     public function __construct() {
+        // Start the session globally
+        session_start();
+
         $url = $this->parseUrl();
-        echo '<pre>Parsed URL: '; print_r($url); echo '</pre>';
+        // echo '<pre>Parsed URL: '; print_r($url); echo '</pre>';
 
         $controllerFile = __DIR__ . '/../controllers/' . ucfirst($url[0]) . 'Controller.php';
         if (file_exists($controllerFile)) {
@@ -15,7 +18,7 @@ class App {
             unset($url[0]);
         }
 
-        echo "Loaded controller file: " . $this->controller . "<br>";
+        // echo "Loaded controller file: " . $this->controller . "<br>";
 
         require_once __DIR__ . '/../controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
@@ -23,7 +26,7 @@ class App {
         if (isset($url[1]) && method_exists($this->controller, $url[1])) {
             $this->method = $url[1];
             unset($url[1]);
-        }        
+        }
 
         $this->params = $url ? array_values($url) : [];
 

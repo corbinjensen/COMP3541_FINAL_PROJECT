@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../app/models/User.php';
 
@@ -20,20 +19,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Admin Login</h2>
+<?php require_once __DIR__ . '/../layouts/header.php'; ?>
 
-<?php if ($error): ?>
-    <p style="color:red;"><?php echo $error; ?></p>
-<?php endif; ?>
+<section style="padding: 4rem 2rem; max-width: 400px; margin: 0 auto;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Admin Login</h1>
 
-<form method="POST">
-    <label>Username:<br>
-        <input type="text" name="username" required>
-    </label><br><br>
+    <?php if (!empty($error)): ?>
+        <p style="color:red; text-align: center;"><?php echo $error; ?></p>
+    <?php endif; ?>
 
-    <label>Password:<br>
-        <input type="password" name="password" required>
-    </label><br><br>
+    <form method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <label>
+            Username
+            <input type="text" name="username" required
+                   style="padding: 0.75rem; border-radius: 8px; border: 1px solid #ccc; width: 100%;">
+        </label>
 
-    <button type="submit">Login</button>
-</form>
+        <label>
+            Password
+            <input type="password" name="password" required
+                   style="padding: 0.75rem; border-radius: 8px; border: 1px solid #ccc; width: 100%;">
+        </label>
+
+        <button type="submit"
+                style="background: #1e2a3b; color: white; padding: 0.75rem; border-radius: 30px;
+                       border: none; font-weight: bold; cursor: pointer;">
+            Login →
+        </button>
+    </form>
+</section>
+
+<?php require_once __DIR__ . '/../layouts/footer.php'; ?>

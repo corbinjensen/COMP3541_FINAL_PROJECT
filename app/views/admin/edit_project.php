@@ -1,39 +1,57 @@
-<h2>Edit Project</h2>
+Here’s your fully styled and modernized **Edit Project** form:
 
-<form method="POST" enctype="multipart/form-data">
-    <label>Title:<br>
-        <input type="text" name="title" value="<?php echo htmlspecialchars($project->title); ?>" required>
-    </label><br><br>
+```php
+<section style="padding: 4rem 2rem;">
+    <div style="margin-bottom: 2rem;">
+        <a href="?url=admin/manage_projects" class="btn-secondary">← Back to Projects</a>
+    </div>
 
-    <label>Category:<br>
-        <select name="category_id" required>
-            <option value="">-- Select Category --</option>
-            <?php foreach ($categories as $cat): ?>
-                <option value="<?php echo $cat->id; ?>" <?php if ($project->category_id == $cat->id) echo 'selected'; ?>>
-                    <?php echo htmlspecialchars($cat->name); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </label><br><br>
+    <h2 style="text-align: center; margin-bottom: 2rem;">✏️ Edit Project</h2>
 
-    <label>Description:<br>
-        <textarea name="description" rows="4" required><?php echo htmlspecialchars($project->description); ?></textarea>
-    </label><br><br>
+    <form method="POST" enctype="multipart/form-data"
+          style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
 
-    <label>Tech Stack:<br>
-        <input type="text" name="tech_stack" value="<?php echo htmlspecialchars($project->tech_stack); ?>">
-    </label><br><br>
+        <label>
+            Title:
+            <input type="text" name="title" value="<?= htmlspecialchars($project->title); ?>" required class="form-input">
+        </label>
 
-    <?php if (!empty($project->image)): ?>
-        <p>Current Image:<br>
-            <img src="<?php echo URLROOT . '/public/uploads/' . htmlspecialchars($project->image); ?>" 
-                 alt="Current Image" style="max-width: 300px;"><br><br>
-        </p>
-    <?php endif; ?>
+        <label>
+            Category:
+            <select name="category_id" required class="form-input">
+                <option value="">-- Select Category --</option>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= $cat->id; ?>" <?= ($project->category_id == $cat->id ? 'selected' : ''); ?>>
+                        <?= htmlspecialchars($cat->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </label>
 
-    <label>Replace Image (optional):<br>
-        <input type="file" name="image" accept="image/*">
-    </label><br><br>
+        <label>
+            Description:
+            <textarea name="description" rows="5" required class="form-textarea"><?= htmlspecialchars($project->description); ?></textarea>
+        </label>
 
-    <button type="submit">Update Project</button>
-</form>
+        <label>
+            Tech Stack:
+            <input type="text" name="tech_stack" value="<?= htmlspecialchars($project->tech_stack); ?>" class="form-input">
+        </label>
+
+        <?php if (!empty($project->image)): ?>
+            <div>
+                <p>Current Image:</p>
+                <img src="<?= URLROOT . '/public/uploads/' . htmlspecialchars($project->image); ?>"
+                     alt="Current Image" style="max-width: 300px; border-radius: 8px;">
+            </div>
+        <?php endif; ?>
+
+        <label>
+            Replace Image (optional):
+            <input type="file" name="image" accept="image/*" class="form-file">
+        </label>
+
+        <button type="submit" class="btn-primary">Update Project</button>
+    </form>
+</section>
+```

@@ -1,24 +1,36 @@
-<h2>Edit Blog Post</h2>
+<section style="padding: 4rem 2rem;">
+    <div style="margin-bottom: 2rem;">
+        <a href="?url=admin/manage_blog" class="btn-secondary">← Back to Blog</a>
+    </div>
 
-<form method="POST" enctype="multipart/form-data">
-    <label>Title:<br>
-        <input type="text" name="title" value="<?php echo htmlspecialchars($post->title); ?>" required>
-    </label><br><br>
+    <h2 style="text-align: center; margin-bottom: 2rem;">✏️ Edit Blog Post</h2>
 
-    <label>Content:<br>
-        <textarea name="content" rows="8" required><?php echo htmlspecialchars($post->content); ?></textarea>
-    </label><br><br>
+    <form method="POST" enctype="multipart/form-data"
+          style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
 
-    <?php if (!empty($post->image)): ?>
-        <p>Current Image:<br>
-            <img src="<?php echo URLROOT . '/public/uploads/' . htmlspecialchars($post->image); ?>" 
-                 alt="Current Image" style="max-width: 300px;"><br><br>
-        </p>
-    <?php endif; ?>
+        <label>
+            Title:
+            <input type="text" name="title" value="<?= htmlspecialchars($post->title); ?>" required class="form-input">
+        </label>
 
-    <label>Replace Image (optional):<br>
-        <input type="file" name="image" accept="image/*">
-    </label><br><br>
+        <label>
+            Content:
+            <textarea name="content" rows="8" required class="form-textarea"><?= htmlspecialchars($post->content); ?></textarea>
+        </label>
 
-    <button type="submit">Update Post</button>
-</form>
+        <?php if (!empty($post->image)): ?>
+            <div>
+                <p>Current Image:</p>
+                <img src="<?= URLROOT . '/public/uploads/' . htmlspecialchars($post->image); ?>" 
+                     alt="Current Image" style="max-width: 300px; border-radius: 8px;">
+            </div>
+        <?php endif; ?>
+
+        <label>
+            Replace Image (optional):
+            <input type="file" name="image" accept="image/*" class="form-file">
+        </label>
+
+        <button type="submit" class="btn-primary">Update Post</button>
+    </form>
+</section>

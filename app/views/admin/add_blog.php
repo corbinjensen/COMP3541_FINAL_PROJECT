@@ -1,18 +1,28 @@
-<h2>Add New Blog Post</h2>
+<section style="padding: 4rem 2rem;">
+    <div style="margin-bottom: 2rem;">
+        <a href="?url=admin/manage_blog" class="btn-secondary">← Back to Blog</a>
+    </div>
 
-<form method="POST" enctype="multipart/form-data">
-    <label>Title:<br>
-        <input type="text" name="title" required>
-    </label><br><br>
+    <h2 style="text-align: center; margin-bottom: 2rem;">➕ Add New Blog Post</h2>
 
-    <label>Content:<br>
-        <textarea name="content" rows="8" required></textarea>
-    </label><br><br>
+    <form method="POST" enctype="multipart/form-data"
+          style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
 
-    <label>Upload Image:<br>
-        <input type="file" name="image" accept="image/*">
-    </label><br><br>
+        <label>
+            Title:
+            <input type="text" name="title" required class="form-input">
+        </label>
 
-    <button type="submit">Add Post</button>
-</form>
+        <label>
+            Content:
+            <textarea name="content" rows="8" required class="form-textarea"></textarea>
+        </label>
 
+        <label>
+            Upload Image:
+            <input type="file" name="image" accept="image/*" class="form-file">
+        </label>
+
+        <button type="submit" class="btn-primary">Add Post</button>
+    </form>
+</section>

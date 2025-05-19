@@ -1,17 +1,28 @@
-<h2>Edit Skill</h2>
+<section style="padding: 4rem 2rem;">
+    <div style="margin-bottom: 2rem;">
+        <a href="?url=admin/manage_skills" class="btn-secondary">← Back to Skills</a>
+    </div>
 
-<form method="POST">
-    <label>Skill Name:<br>
-        <input type="text" name="name" value="<?php echo htmlspecialchars($skill->name); ?>" required>
-    </label><br><br>
+    <h2 style="text-align: center; margin-bottom: 2rem;">✏️ Edit Skill</h2>
 
-    <label>Category:<br>
-        <input type="text" name="category" value="<?php echo htmlspecialchars($skill->category); ?>">
-    </label><br><br>
+    <form method="POST"
+          style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
 
-    <label>Level:<br>
-        <input type="text" name="level" value="<?php echo htmlspecialchars($skill->level); ?>">
-    </label><br><br>
+        <label>
+            Skill Name:
+            <input type="text" name="name" value="<?= htmlspecialchars($skill->name); ?>" required class="form-input">
+        </label>
 
-    <button type="submit">Update Skill</button>
-</form>
+        <label>
+            Category:
+            <input type="text" name="category" value="<?= htmlspecialchars($skill->category); ?>" class="form-input">
+        </label>
+
+        <label>
+            Level:
+            <input type="text" name="level" value="<?= htmlspecialchars($skill->level); ?>" class="form-input">
+        </label>
+
+        <button type="submit" class="btn-primary">Update Skill</button>
+    </form>
+</section>

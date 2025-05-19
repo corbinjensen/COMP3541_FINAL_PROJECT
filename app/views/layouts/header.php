@@ -2,23 +2,34 @@
 <html>
 <head>
     <title>Corbin Jensen Portfolio</title>
-    <link rel="stylesheet" href="/COMP3541_FINAL_PROJECT_CorbinJensen_T00660756/public/css/styles.css">
+    <!-- Standard favicon -->
+    <link rel="icon" type="image/png" href="<?php echo URLROOT; ?>/public/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="<?php echo URLROOT; ?>/public/favicon.ico" type="image/x-icon">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="<?php echo URLROOT; ?>/public/apple-touch-icon.png">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="<?php echo URLROOT; ?>/public/site.webmanifest">
+
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<nav>
-    <a href="?url=home/index">Home</a>
-    <a href="?url=projects/index">Projects</a>
-    <a href="?url=blog/index">Blog</a>
-    <a href="?url=about/index">About</a>
-    <a href="?url=skills/index">Skills</a>
-    <a href="?url=testimonials/index">Testimonials</a>
-    <a href="?url=contact/index">Contact</a>
+<nav style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background: #3b55ff; color: white;">
+    <!-- Left Links -->
+    <div style="display: flex; gap: 2rem;">
+        <a href="?url=projects/index" style="color: white; text-decoration: none;">Work</a>
+        <a href="?url=about/index" style="color: white; text-decoration: none;">About</a>
+        <a href="?url=blog/index" style="color: white; text-decoration: none;">Blog</a>
+        <a href="?url=contact/index" style="color: white; text-decoration: none;">Contact</a>
+    </div>
 
-    <?php if (isset($_SESSION['user_id'])): ?>
-        <a href="?url=admin/dashboard">Dashboard</a>
-        <a href="?url=admin/logout">Logout</a>
-    <?php else: ?>
-        <a href="?url=admin/login">Login</a>
-    <?php endif; ?>
+    <!-- Logo/Name on Right -->
+    <div style="font-family: monospace; font-size: 1.1rem;">
+        <a href="?url=home/index" style="color: white; text-decoration: none;">
+            <strong>corbin</strong><span style="font-weight: 300;">jensen_</span>
+        </a>
+    </div>
 </nav>
-<hr>
+

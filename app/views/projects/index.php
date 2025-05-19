@@ -1,58 +1,41 @@
-<h1>Projects</h1>
+<section style="padding: 4rem 0; background: #ffffff;">
+    <h1 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Case Studies</h1>
 
-<form method="GET" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-    <input type="hidden" name="url" value="projects/index">
-    
-    <label for="category_id">Filter by Category:</label>
-    <select name="category_id" onchange="this.form.submit()">
-        <option value="">-- All Categories --</option>
-        <?php foreach ($categories as $cat): ?>
-            <option value="<?php echo $cat->id; ?>" 
-                <?php if (isset($_GET['category_id']) && $_GET['category_id'] == $cat->id) echo 'selected'; ?>>
-                <?php echo htmlspecialchars($cat->name); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</form>
+    <!-- Filter dropdown (optional) -->
+    <!-- You can reuse your existing filter markup here -->
 
+    <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+        align-items: stretch;
+    ">
+    <?php foreach ($projects as $project): ?>
+        <div style="display: flex; flex-direction: column; height: 100%;">
 
-<br>
-<?php if (!empty($selectedCategoryName)): ?>
-    <h2>Category: <?php echo htmlspecialchars($selectedCategoryName); ?></h2>
-<?php endif; ?>
-<br>
+            <a href="?url=projects/view/<?= $project->id; ?>" style="text-decoration: none; color: inherit;">
+                <!-- Image -->
+                <div class="project-thumb" style="flex: 1; height: 250px; overflow: hidden; position: relative;">
+                    <img src="<?= URLROOT . '/public/uploads/' . htmlspecialchars($project->image); ?>"
+                        alt="<?= htmlspecialchars($project->title); ?>"
+                        class="project-image"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, opacity 0.4s ease;">
+                    <div class="project-overlay"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                            background-color: rgba(0, 0, 0, 0); transition: background-color 0.4s ease;"></div>
+                </div>
 
-<?php if (!empty($projects)) : ?>
-    <ul>
-        <?php foreach ($projects as $project): ?>
-            <li style="margin-bottom: 2rem;">
-                <?php if (!empty($project->image)): ?>
-                    <?php if (filter_var($project->image, FILTER_VALIDATE_URL)) : ?>
-                        <!-- External image URL -->
-                        <img src="<?php echo $project->image; ?>" 
-                             alt="<?php echo htmlspecialchars($project->title); ?>" 
-                             style="max-width: 300px; height: auto;">
-                    <?php else: ?>
-                        <!-- Local image from /public/uploads/ -->
-                        <img src="<?php echo URLROOT . '/public/uploads/' . htmlspecialchars($project->image); ?>" 
-                             alt="<?php echo htmlspecialchars($project->title); ?>" 
-                             style="max-width: 300px; height: auto;">
-                    <?php endif; ?>
-                <?php endif; ?>
+                <!-- Title -->
+                <div style="text-align: center; padding: 1rem 0;">
+                    <h3 style="margin: 0; font-size: 1rem; font-weight: normal; color: #1e2a3b;">
+                        <?= htmlspecialchars($project->title); ?>
+                    </h3>
+                </div>
+            </a>
 
-                <h3><?php echo htmlspecialchars($project->title); ?></h3>
-                <p><?php echo nl2br(htmlspecialchars($project->description)); ?></p>
+        </div>
+    <?php endforeach; ?>
 
-                <?php if (!empty($project->category_name)): ?>
-                    <p><strong>Category:</strong> <?php echo htmlspecialchars($project->category_name); ?></p>
-                <?php endif; ?>
-
-                <p><strong>Tech Stack:</strong> <?php echo htmlspecialchars($project->tech_stack); ?></p>
-                <p><a href="?url=projects/view/<?php echo $project->id; ?>">View Details</a></p>
-                <hr>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php else: ?>
-    <p>No projects found.</p>
-<?php endif; ?>
+    </div>
+</section>

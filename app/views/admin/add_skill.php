@@ -1,17 +1,28 @@
-<h2>Add New Skill</h2>
+<section style="padding: 4rem 2rem;">
+    <div style="margin-bottom: 2rem;">
+        <a href="?url=admin/manage_skills" class="btn-secondary">← Back to Skills</a>
+    </div>
 
-<form method="POST">
-    <label>Skill Name:<br>
-        <input type="text" name="name" required>
-    </label><br><br>
+    <h2 style="text-align: center; margin-bottom: 2rem;">➕ Add New Skill</h2>
 
-    <label>Category (e.g., Frontend, Backend, DB):<br>
-        <input type="text" name="category">
-    </label><br><br>
+    <form method="POST"
+          style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
 
-    <label>Level (e.g., Beginner, Intermediate, Expert):<br>
-        <input type="text" name="level">
-    </label><br><br>
+        <label>
+            Skill Name:
+            <input type="text" name="name" required class="form-input">
+        </label>
 
-    <button type="submit">Add Skill</button>
-</form>
+        <label>
+            Category <span style="font-size: 0.9rem; color: #666;">(e.g., Frontend, Backend, DB)</span>:
+            <input type="text" name="category" class="form-input">
+        </label>
+
+        <label>
+            Level <span style="font-size: 0.9rem; color: #666;">(e.g., Beginner, Intermediate, Expert)</span>:
+            <input type="text" name="level" class="form-input">
+        </label>
+
+        <button type="submit" class="btn-primary">Add Skill</button>
+    </form>
+</section>

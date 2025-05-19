@@ -5,7 +5,6 @@ class AdminController {
     }
 
     public function logout() {
-        session_start();
         session_unset();
         session_destroy();
         header("Location: ?url=admin/login");
@@ -18,7 +17,6 @@ class AdminController {
     }    
 
     public function dashboard() {
-        session_start();
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -30,7 +28,6 @@ class AdminController {
     }
     
     public function manage_projects() {
-        session_start();
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -46,7 +43,7 @@ class AdminController {
     }
 
     public function add_project() {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -88,7 +85,7 @@ class AdminController {
     
     
     public function edit_project($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -145,7 +142,7 @@ class AdminController {
     
 
     public function delete_project($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -165,7 +162,7 @@ class AdminController {
     }
 
     public function manage_categories() {
-        session_start();
+       
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -197,7 +194,7 @@ class AdminController {
     
 
     public function manage_blog() {
-        session_start();
+       
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -213,7 +210,7 @@ class AdminController {
     }
 
     public function add_blog() {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -248,7 +245,7 @@ class AdminController {
     }
     
     public function edit_blog($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -297,7 +294,7 @@ class AdminController {
     
 
     public function delete_blog($id = null) {
-        session_start();
+       
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -317,7 +314,7 @@ class AdminController {
     }
     
     public function manage_skills() {
-        session_start();
+       
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -333,7 +330,7 @@ class AdminController {
     }
     
     public function add_skill() {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -360,7 +357,7 @@ class AdminController {
     }
 
     public function edit_skill($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -400,7 +397,7 @@ class AdminController {
     }
 
     public function delete_skill($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -420,7 +417,7 @@ class AdminController {
     }
  
     public function manage_testimonials() {
-        session_start();
+       
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -436,7 +433,7 @@ class AdminController {
     }
 
     public function add_testimonial() {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -446,8 +443,16 @@ class AdminController {
             require_once __DIR__ . '/../models/Testimonial.php';
             $testimonialModel = new Testimonial();
     
+            $filename = null;
+            if (!empty($_FILES['photo']['name'])) {
+                $targetDir = __DIR__ . '/../../public/uploads/';
+                $filename = basename($_FILES['photo']['name']);
+                move_uploaded_file($_FILES['photo']['tmp_name'], $targetDir . $filename);
+            }
+    
             $data = [
                 'author_name' => $_POST['author_name'],
+                'photo' => $filename,
                 'content' => $_POST['content']
             ];
     
@@ -461,8 +466,9 @@ class AdminController {
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
     
+    
     public function edit_testimonial($id = null) {
-        session_start();
+      
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -484,9 +490,18 @@ class AdminController {
         }
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $filename = $testimonial->photo;
+    
+            if (!empty($_FILES['photo']['name'])) {
+                $targetDir = __DIR__ . '/../../public/uploads/';
+                $filename = basename($_FILES['photo']['name']);
+                move_uploaded_file($_FILES['photo']['tmp_name'], $targetDir . $filename);
+            }
+    
             $data = [
                 'id' => $id,
                 'author_name' => $_POST['author_name'],
+                'photo' => $filename,
                 'content' => $_POST['content']
             ];
     
@@ -499,9 +514,10 @@ class AdminController {
         require_once __DIR__ . '/../views/admin/edit_testimonial.php';
         require_once __DIR__ . '/../views/layouts/footer.php';
     }
+    
 
     public function delete_testimonial($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -521,7 +537,7 @@ class AdminController {
     }
     
     public function manage_messages() {
-        session_start();
+       
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -537,7 +553,7 @@ class AdminController {
     }   
     
     public function delete_message($id = null) {
-        session_start();
+        
         if (!isset($_SESSION['user_id'])) {
             header("Location: ?url=admin/login");
             exit;
@@ -555,6 +571,48 @@ class AdminController {
         header("Location: ?url=admin/manage_messages");
         exit;
     }
+
+    public function manage_users() {
+    
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: ?url=admin/login");
+            exit;
+        }
+    
+        require_once __DIR__ . '/../models/User.php';
+        $userModel = new User();
+    
+        // Handle password change
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
+            $id = $_POST['user_id'];
+            $newPass = $_POST['new_password'];
+    
+            if ($newPass) {
+                $userModel->updatePassword($id, $newPass);
+                header("Location: ?url=admin/manage_users");
+                exit;
+            }
+        }
+    
+        // Handle new user
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_user'])) {
+            $username = $_POST['new_username'];
+            $password = $_POST['new_user_password'];
+    
+            if ($username && $password) {
+                $userModel->add($username, $password);
+                header("Location: ?url=admin/manage_users");
+                exit;
+            }
+        }
+    
+        $users = $userModel->getAll();
+    
+        require_once __DIR__ . '/../views/layouts/header.php';
+        require_once __DIR__ . '/../views/admin/manage_users.php';
+        require_once __DIR__ . '/../views/layouts/footer.php';
+    }
+    
     
     
 }
