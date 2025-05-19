@@ -16,20 +16,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<nav style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background: #3b55ff; color: white;">
+<nav style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background: #ffffff; color: #1e2a3b; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+
     <!-- Left Links -->
-    <div style="display: flex; gap: 2rem;">
-        <a href="?url=projects/index" style="color: white; text-decoration: none;">Work</a>
-        <a href="?url=about/index" style="color: white; text-decoration: none;">About</a>
-        <a href="?url=blog/index" style="color: white; text-decoration: none;">Blog</a>
-        <a href="?url=contact/index" style="color: white; text-decoration: none;">Contact</a>
+    <div style="display: flex; gap: 2rem; align-items: center;">
+        <a href="?url=projects/index" style="color: #1e2a3b; text-decoration: none; font-weight: 500;">Work</a>
+        <a href="?url=about/index" style="color: #1e2a3b; text-decoration: none; font-weight: 500;">About</a>
+        <a href="?url=blog/index" style="color: #1e2a3b; text-decoration: none; font-weight: 500;">Blog</a>
+        <a href="?url=contact/index" style="color: #1e2a3b; text-decoration: none; font-weight: 500;">Contact</a>
     </div>
 
-    <!-- Logo/Name on Right -->
-    <div style="font-family: monospace; font-size: 1.1rem;">
-        <a href="?url=home/index" style="color: white; text-decoration: none;">
-            <strong>corbin</strong><span style="font-weight: 300;">jensen_</span>
+    <!-- Logo -->
+    <div>
+        <a href="?url=home/index">
+            <img src="<?php echo URLROOT; ?>/public/uploads/corbinJensenLogo.svg" 
+                 alt="Corbin Jensen Logo"
+                 style="height: 42px;">
         </a>
     </div>
 </nav>
+
+
 

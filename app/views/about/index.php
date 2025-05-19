@@ -16,19 +16,25 @@
             <h1 style="font-size: 2rem; margin-bottom: 1rem;">Corbin Jensen</h1>
             
             <p style="line-height: 1.6; margin-bottom: 1rem;">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt 
-                ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam...
+                Corbin Jensen is a web developer and computing science student with a background in digital media, public interest technology, and sustainable innovation. He’s passionate about creating clean, user-friendly websites and tools that make everyday systems more accessible and efficient. Currently based in Alberta, Corbin is completing his BSc in Computing Science while collaborating on civic tech, design, and community projects.
             </p>
 
-            <p style="line-height: 1.6; margin-bottom: 2rem;">
-                ...quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
 
+              <p style="margin: 1.5rem 0;">
             <a href="<?php echo URLROOT; ?>/public/assets/Corbin-Jensen-CV.pdf" download 
-               style="background: white; color: #3b55ff; padding: 0.75rem 1.5rem; border-radius: 30px; 
-                      font-weight: bold; text-decoration: none;">
-                Download my CV ↓
+               style="background: white; color: #3b55ff; padding: 0.8rem 1.5rem; border-radius: 40px; 
+                      font-weight: bold; text-decoration: none; margin-right: 1rem;">
+                <i class="fas fa-download"></i> Download my CV
             </a>
+
+            <a href="https://www.linkedin.com/in/corbinjensen/" target="_blank" style="color: white; margin-right: 1rem;">
+                <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+
+            <a href="http://github.com/corbinjensen" target="_blank" style="color: white;">
+                <i class="fab fa-github fa-2x"></i>
+            </a>
+        </p>
         </div>
     </div>
 </section>

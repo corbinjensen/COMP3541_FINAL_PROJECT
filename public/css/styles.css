@@ -127,6 +127,11 @@ em {
     font-style: italic;
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
+
+
 .btn-primary {
     background: #3b55ff;
     color: white;

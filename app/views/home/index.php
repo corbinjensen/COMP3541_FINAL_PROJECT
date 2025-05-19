@@ -2,7 +2,11 @@
 <section style="background-color: #3b55ff; color: white; padding: 4rem 2rem;">
     <div style="max-width: 700px; margin: 0 auto;">
         <p style="font-size: 2rem; line-height: 1.4;">
-            <strong>Corbin Jensen</strong> is a coding expert with an appetite for software development, based in Alberta, Canada.
+            <strong>Corbin Jensen</strong> is a Computer Science student
+
+that enjoys creating beautiful things with code
+
+that help people, and make an impact.
         </p>
     </div>
 </section>
@@ -102,26 +106,38 @@
 
 
 <!-- TESTIMONIALS -->
-<section style="background-color: #1e2a3b; color: white; padding: 6rem 2rem;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">What Clients Say</h2>
+<section style="padding: 4rem 2rem; background-color: #1e2a3b; color: white;">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem;">Testimonials</h2>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
-            <?php foreach ($testimonials as $t): ?>
-                <div style="line-height: 1.6;">
-                    <p style="margin-bottom: 1.5rem;">
-                        <?php echo nl2br(htmlspecialchars($t->content)); ?>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <?php foreach ($testimonials as $t): ?>
+            <div style="background-color: #2d3a4b; border-radius: 12px; padding: 2rem; position: relative;">
+                
+                <?php if (!empty($t->photo)): ?>
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <img src="<?= URLROOT . '/public/uploads/' . htmlspecialchars($t->photo); ?>"
+                             alt="<?= htmlspecialchars($t->author_name); ?>"
+                             style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid white;">
+                    </div>
+                <?php endif; ?>
+
+                <p style="font-style: italic; line-height: 1.6;">
+                    “<?= nl2br(htmlspecialchars($t->content)); ?>”
+                </p>
+
+                <p style="margin-top: 1rem; font-weight: bold;">
+                    <?= htmlspecialchars($t->author_name); ?>
+                </p>
+
+                <?php if (!empty($t->author_title)): ?>
+                    <p style="font-size: 0.9rem; color: #ccc;">
+                        <?= htmlspecialchars($t->author_title); ?>
                     </p>
-                    <p style="color: #7b90ff; font-weight: bold; margin-bottom: 0;">
-                        <?php echo htmlspecialchars($t->author_name); ?>
-                    </p>
-                    <p style="color: #7b90ff;">
-                        <?php echo htmlspecialchars($t->author_title ?? ''); ?>
-                    </p>
-                </div>
-            <?php endforeach; ?>
-        </div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
 </section>
+
 
 
